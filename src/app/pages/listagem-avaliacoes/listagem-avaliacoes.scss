@@ -1,0 +1,47 @@
+mat-card {
+    margin: 20px;
+}
+
+mat-card-header {
+    background-color: var(--mat-sys-surface-container-highest);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+
+    mat-card-title {
+        font-weight: bold;
+    }
+
+    button[matMiniFab] {
+        background-color: #001f54 !important;
+
+        mat-icon {
+            color: white !important;
+        }
+    }
+}
+
+mat-card-content {
+    background-color: var(--mat-sys-surface-container-lowest);
+    overflow: auto;
+    max-height: 500px;
+
+    table {
+        .mat-column-status {
+            text-align: center;
+        }
+    }
+}
+
+tr.mat-mdc-row:nth-child(odd),
+tr.mat-row:nth-child(odd) {
+    background-color: var(--mat-sys-surface-container-highest) !important;
+}
+
+tr.mat-mdc-row:hover,
+tr.mat-row:hover {
+    background-color: #e3f2fd !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
