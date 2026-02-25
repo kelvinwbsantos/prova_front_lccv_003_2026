@@ -3,7 +3,7 @@
 
         <mat-card-title>Avaliações de desempenho</mat-card-title>
 
-        <button matMiniFab (click)="adicionarAvaliacao()">
+        <button matMiniFab (click)="adicionarAvaliacao()" matTooltip="Adicionar avaliação" matTooltipPosition="above">
             <mat-icon>add</mat-icon>
         </button>
 
@@ -41,30 +41,30 @@
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element">
 
-                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)" matTooltip="Visualizar">
+                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)" matTooltip="Visualizar" matTooltipPosition="above">
                         <mat-icon>visibility</mat-icon>
                     </button>
 
                     @if (element.status.id === 1) {
-                        <button mat-icon-button color="primary" (click)="iniciar(element.id_avaliacao)" matTooltip="Iniciar avaliação">
+                        <button mat-icon-button color="primary" (click)="iniciar(element.id_avaliacao)" matTooltip="Iniciar avaliação" matTooltipPosition="above">
                             <mat-icon>play_circle</mat-icon>
                         </button>
                     }
 
                     @if (element.status.id === 2 || element.status.id === 3) {
-                        <button mat-icon-button color="primary" (click)="editar(element.id_avaliacao)" matTooltip="Editar avaliação">
+                        <button mat-icon-button color="primary" (click)="editar(element.id_avaliacao)" matTooltip="Editar avaliação" matTooltipPosition="above">
                             <mat-icon>edit_document</mat-icon>
                         </button>
                     }
 
                     @if (element.status.id === 2) {
-                        <button mat-icon-button color="primary" (click)="darFeedback(element.id_avaliacao)" matTooltip="Dar feedback">
+                        <button mat-icon-button color="primary" (click)="darFeedback(element.id_avaliacao)" matTooltip="Dar feedback" matTooltipPosition="above">
                             <mat-icon>mic</mat-icon>
                         </button>
                     }
 
                     @if (element.status.id === 3) {
-                    <button mat-icon-button color="primary" (click)="concluir(element.id_avaliacao)" matTooltip="Concluir avaliação">
+                    <button mat-icon-button color="primary" (click)="concluir(element.id_avaliacao)" matTooltip="Concluir avaliação" matTooltipPosition="above">
                         <mat-icon>assignment_turned_in</mat-icon>
                     </button>
                     }
