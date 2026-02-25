@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Cadastrar avaliação</h2>
+<button matMiniFab (click)="fechar()" class="close-btn">
+    <mat-icon>close</mat-icon>
+</button>
+
+<mat-dialog-content>
+    <form [formGroup]="form">
+        <h4>Colaborador*</h4>
+        <mat-form-field>
+            <mat-select formControlName="colaborador">
+                @for (colaborador of colaboradores(); track colaborador.id_colaborador) {
+                <mat-option [value]="colaborador.id_colaborador">
+                    {{ colaborador.nome }}
+                </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <h4>Supervisor*</h4>
+        <mat-form-field>
+            <mat-select formControlName="supervisor">
+                @for (supervisor of supervisores(); track supervisor.id_supervisor) {
+                <mat-option [value]="supervisor.id_supervisor">
+                    {{ supervisor.nome }}
+                </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <h4>Competência*</h4>
+        <mat-form-field class="datepicker">
+            <input matInput [matDatepicker]="picker" formControlName="competencia">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button matButton mat-dialog-close class="cancelar-btn" (click)="fechar()">Cancelar</button>
+
+    <button matButton class="cadastrar-btn" [disabled]="form.invalid"
+        (click)="cadastrar()">Cadastrar</button>
+</mat-dialog-actions>

@@ -1,0 +1,55 @@
+h2[mat-dialog-title] {
+  background-color: var(--mat-sys-surface-container-highest);
+  font-weight: bold;
+  margin: 0;
+  padding: 16px 20px;
+  padding-right: 256px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #001f54 !important;
+
+  mat-icon {
+    color: white !important;
+  }
+}
+
+mat-dialog-content {
+  background-color: var(--mat-sys-surface-container-lowest);
+  max-height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .datepicker {
+    max-width: 50%;
+  }
+}
+
+mat-dialog-actions {
+  .cancelar-btn {
+    background-color: #c62828 !important;
+    color: white !important;
+    border-radius: 0 !important;
+  }
+
+  .cadastrar-btn {
+    background-color: #001f54 !important;
+    color: white !important;
+    border-radius: 0 !important;
+    
+    &:disabled {
+    background-color: #cccccc !important;
+    color: #666666 !important;
+  }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
