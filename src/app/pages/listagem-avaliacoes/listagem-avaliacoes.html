@@ -40,21 +40,35 @@
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)">
+
+                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)" matTooltip="Visualizar">
                         <mat-icon>visibility</mat-icon>
                     </button>
-                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)">
-                        <mat-icon>play_circle</mat-icon>
-                    </button>
-                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)">
-                        <mat-icon>edit_document</mat-icon>
-                    </button>
-                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)">
-                        <mat-icon>mic</mat-icon>
-                    </button>
-                    <button mat-icon-button color="primary" (click)="visualizar(element.id_avaliacao)">
+
+                    @if (element.status.id === 1) {
+                        <button mat-icon-button color="primary" (click)="iniciar(element.id_avaliacao)" matTooltip="Iniciar avaliação">
+                            <mat-icon>play_circle</mat-icon>
+                        </button>
+                    }
+
+                    @if (element.status.id === 2 || element.status.id === 3) {
+                        <button mat-icon-button color="primary" (click)="editar(element.id_avaliacao)" matTooltip="Editar avaliação">
+                            <mat-icon>edit_document</mat-icon>
+                        </button>
+                    }
+
+                    @if (element.status.id === 2) {
+                        <button mat-icon-button color="primary" (click)="darFeedback(element.id_avaliacao)" matTooltip="Dar feedback">
+                            <mat-icon>mic</mat-icon>
+                        </button>
+                    }
+
+                    @if (element.status.id === 3) {
+                    <button mat-icon-button color="primary" (click)="concluir(element.id_avaliacao)" matTooltip="Concluir avaliação">
                         <mat-icon>assignment_turned_in</mat-icon>
                     </button>
+                    }
+
                 </td>
             </ng-container>
 

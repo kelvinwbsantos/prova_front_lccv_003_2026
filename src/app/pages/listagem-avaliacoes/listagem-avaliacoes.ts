@@ -10,16 +10,19 @@ import { MatCardModule } from '@angular/material/card';
 import { CompetenciaFormatPipe } from '../../shared/pipes/competencia-format.pipe';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AdicionarAvaliacao } from './components/adicionar-avaliacao/adicionar-avaliacao';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listagem-avaliacoes',
-  imports: [MatIconModule, MatTableModule, MatButtonModule, AsyncPipe, MatDialogModule, MatCardModule, CompetenciaFormatPipe],
+  imports: [MatIconModule, MatTableModule, MatButtonModule, AsyncPipe, MatDialogModule, MatCardModule, CompetenciaFormatPipe, MatTooltipModule, MatSnackBarModule],
   templateUrl: './listagem-avaliacoes.html',
   styleUrl: './listagem-avaliacoes.scss',
 })
 export class ListagemAvaliacoes implements OnInit {
   private readonly avaliacoesService = inject(AvaliacoesService);
   private readonly dialog = inject(MatDialog);
+  private readonly snackBar = inject(MatSnackBar);
 
 
   dataSource$: Observable<AvaliacaoListagem[]> | undefined;
@@ -29,16 +32,46 @@ export class ListagemAvaliacoes implements OnInit {
     this.dataSource$ = this.avaliacoesService.listar();
   }
 
-  iniciar(id: number) {
-
+  visualizar(id: number) {
+    // [GET] https://sume.lccv.ufal.br/api/public/selecao_sume/avaliacoes_desempenho/{id_avaliacao}/visualizar/
   }
 
-  visualizar(id: number) {
+  editar(id: number) {
+    // [POST] https://sume.lccv.ufal.br/api/public/selecao_sume/avaliacoes_desempenho/{id_avaliacao}/editar/
+  }
 
+  iniciar(id: number) {
+    this.avaliacoesService.iniciar(id).subscribe({
+      next: () => {
+        this.snackBar.open('Avaliação iniciada!', 'Fechar', { duration: 3000 });
+        this.dataSource$ = this.avaliacoesService.listar();
+      },
+      error: () => this.snackBar.open('Erro ao iniciar avaliação!', 'Fechar', { duration: 3000 }),
+    });
+  }
+
+  darFeedback(id: number) {
+    this.avaliacoesService.darFeedback(id).subscribe({
+      next: () => {
+        this.snackBar.open('Feedback enviado!', 'Fechar', { duration: 3000 });
+        this.dataSource$ = this.avaliacoesService.listar();
+      },
+      error: () => this.snackBar.open('Erro ao dar feedback!', 'Fechar', { duration: 3000 }),
+    });
+  }
+
+  concluir(id: number) {
+    this.avaliacoesService.concluir(id).subscribe({
+      next: () => {
+        this.snackBar.open('Avaliação concluída!', 'Fechar', { duration: 3000 });
+        this.dataSource$ = this.avaliacoesService.listar();
+      },
+      error: () => this.snackBar.open('Erro ao concluir avaliação!', 'Fechar', { duration: 3000 }),
+    });
   }
 
   adicionarAvaliacao() {
-    const dialogRef = this.dialog.open(AdicionarAvaliacao);
+    this.dialog.open(AdicionarAvaliacao);
   }
 
 }

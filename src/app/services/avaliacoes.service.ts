@@ -22,4 +22,24 @@ export class AvaliacoesService {
   cadastrar(dados: any): Observable<any> {
     return this.http.post(`${this.url}/cadastrar/`, dados);
   }
+
+  visualizar(id: number): Observable<any> {
+    return this.http.get(`${this.url}/${id}/visualizar/`);
+  }
+
+  editar(id: number, dados: any): Observable<any> {
+    return this.http.post(`${this.url}/${id}/editar/`, dados);
+  }
+
+  iniciar(id: number): Observable<any> {
+    return this.http.post(`${this.url}/${id}/iniciar/`, {});
+  }
+
+  darFeedback(id: number): Observable<any> {
+    return this.http.post(`${this.url}/${id}/dar_feedback/`, {});
+  }
+
+  concluir(id: number): Observable<any> {
+    return this.http.post(`${this.url}/${id}/concluir/`, {});
+  }
 }
