@@ -12,6 +12,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AdicionarAvaliacao } from './components/adicionar-avaliacao/adicionar-avaliacao';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listagem-avaliacoes',
@@ -23,6 +24,7 @@ export class ListagemAvaliacoes implements OnInit {
   private readonly avaliacoesService = inject(AvaliacoesService);
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
+  private router = inject(Router);
 
 
   dataSource$: Observable<AvaliacaoListagem[]> | undefined;
@@ -33,11 +35,11 @@ export class ListagemAvaliacoes implements OnInit {
   }
 
   visualizar(id: number) {
-    // [GET] https://sume.lccv.ufal.br/api/public/selecao_sume/avaliacoes_desempenho/{id_avaliacao}/visualizar/
+    this.router.navigate(['/avaliacoes', id, 'visualizar']);
   }
 
   editar(id: number) {
-    // [POST] https://sume.lccv.ufal.br/api/public/selecao_sume/avaliacoes_desempenho/{id_avaliacao}/editar/
+    this.router.navigate(['/avaliacoes', id, 'editar']);
   }
 
   iniciar(id: number) {

@@ -32,6 +32,6 @@ export class CompetenciaFormatPipe implements PipeTransform {
 
     const mesExtenso = this.MESES[mes] || mes;
 
-    return `${mesExtenso}/${ano}`;
+    return `${mesExtenso}./${ano}`;
   }
 }
